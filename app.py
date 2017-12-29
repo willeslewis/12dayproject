@@ -1,4 +1,4 @@
-import numpy as np
+#import numpy as np
 from bokeh.plotting import figure
 from bokeh.embed import components 
 from bokeh.charts import Histogram
@@ -25,32 +25,32 @@ def create_figure(current_feature_name, bins):
 	return p
 
 
-def datetime(x):
-  return np.array(x,dtype=np.datetime64)
+#def datetime(x):
+#  return np.array(x,dtype=np.datetime64)
 
 
-def stock_load(ticker_name):
+#def stock_load(ticker_name):
 
-  api_url = 'https://www.quandl.com/api/v3/datasets/WIKI/%s.json' % stock
-  r=requests.get(api_url)
-  myjson=r.json()
-  tickerdata=pd.DataFrame(myjson['dataset']['data'],columns=['Date','Open','High','Low','Close','Volume','Ex-Dividend','Split Ratio','Adj. Open','Adj. High','Adj. Low','Adj. Close','Adj. Volume'])
+#  api_url = 'https://www.quandl.com/api/v3/datasets/WIKI/%s.json' % stock
+#  r=requests.get(api_url)
+#  myjson=r.json()
+#  tickerdata=pd.DataFrame(myjson['dataset']['data'],columns=['Date','Open','High','Low','Close','Volume','Ex-Dividend','Split Ratio','Adj. Open','Adj. High','Adj. Low','Adj. Close','Adj. Volume'])
 
-  return tickerdata
+#  return tickerdata
 
-def create_plot(tickerdata,ticker_name):
+#def create_plot(tickerdata,ticker_name):
   
-  p1 =figure(x_axis_type="datetime",title="Stock Prices")
+#  p1 =figure(x_axis_type="datetime",title="Stock Prices")
 
-  p1.grid.grid_line_alpha=0.3
+#  p1.grid.grid_line_alpha=0.3
 
-  p1.xaxis.axis_label='Date'
+#  p1.xaxis.axis_label='Date'
 
-  p1.yaxis.axis_label='Price'
+#  p1.yaxis.axis_label='Price'
 
-  p1.line(datetime(tickerdata['Date']),tickerdata['Adj. Close'],color='red',legend='AAPL')
+#  p1.line(datetime(tickerdata['Date']),tickerdata['Adj. Close'],color='red',legend='AAPL')
 
-  p1.legend.location='top_left'
+#  p1.legend.location='top_left'
 
 # Index page
 @app.route('/')
