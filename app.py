@@ -1,5 +1,5 @@
 import numpy as np
-from bokeh.plotting import figure,show,output_notebook
+from bokeh.plotting import figure
 from bokeh.embed import components 
 import pandas as pd
 from flask import Flask, render_template, request, redirect
