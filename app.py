@@ -40,7 +40,7 @@ def plot():
   d = datetime.now() - timedelta(days=365)
 	
   #tickerdata=tickerdata[pd.to_datetime(tickerdata['Date'])>=d]
-  p1 =figure(x_axis_type="datetime",title="Stock Prices for %s" %uservars['ticker'], x_range(d,datetime.now()))
+  p1 =figure(x_axis_type="datetime",title="Stock Prices for %s" %uservars['ticker'], x_range=(d,datetime.now()))
 
   p1.xaxis.axis_label='Date'
 
