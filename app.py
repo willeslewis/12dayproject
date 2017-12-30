@@ -29,7 +29,7 @@ def index():
 
 
 @app.route('/plot',methods=['POST'])
-def create_plot():
+def plot():
 
   stock=request.form['ticker']
   api_url = 'https://www.quandl.com/api/v3/datasets/WIKI/%s.json' % stock
