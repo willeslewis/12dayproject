@@ -31,8 +31,8 @@ def index():
 @app.route('/plot',methods=['POST'])
 def plot():
 
-  stock=request.form['ticker']
-  api_url = 'https://www.quandl.com/api/v3/datasets/WIKI/%s.json' %stock
+  uservars['ticker']=request.form['ticker']
+  api_url = 'https://www.quandl.com/api/v3/datasets/WIKI/%s.json' % uservars['ticker']
   r=requests.get(api_url)
   myjson=r.json()
   tickerdata=pd.DataFrame(myjson['dataset']['data'],columns=['Date','Open','High','Low','Close','Volume','Ex-Dividend','Split Ratio','Adj. Open','Adj. High','Adj. Low','Adj. Close','Adj. Volume'])  
