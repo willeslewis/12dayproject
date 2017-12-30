@@ -2,7 +2,7 @@
 
 # Web app available at http://will-lewis-tdi-project.herokuapp.com/
 
-# Below is the origina project description.
+# Below is the original project description.
 
 # Flask on Heroku
 
