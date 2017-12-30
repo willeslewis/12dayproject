@@ -9,15 +9,6 @@ app = Flask(__name__)
 
 uservars={}
 
-#def stock_load(ticker_name):
-
-#  api_url = 'https://www.quandl.com/api/v3/datasets/WIKI/%s.json' % stock
-#  r=requests.get(api_url)
-#  myjson=r.json()
-#  tickerdata=pd.DataFrame(myjson['dataset']['data'],columns=['Date','Open','High','Low','Close','Volume','Ex-Dividend','Split Ratio','Adj. Open','Adj. High','Adj. Low','Adj. Close','Adj. Volume'])
-
-#  return tickerdata
-
 @app.route('/')
 def main():
   return redirect('/index')
@@ -62,5 +53,4 @@ def plot():
 
 
 if __name__ == '__main__':
-   #app.run(host='0.0.0.0', port=33507)
    app.run(port=33507)  
