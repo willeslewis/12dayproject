@@ -1,4 +1,4 @@
-#import numpy as np
+import numpy as np
 from bokeh.plotting import figure
 from bokeh.embed import components 
 import pandas as pd
