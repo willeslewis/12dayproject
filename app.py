@@ -55,7 +55,7 @@ def plot():
     p1.line(np.array(tickerdata['Date'],dtype=np.datetime64),tickerdata['Adj. Open'],color='red',legend='Adj. Open')
   p1.legend.location='top_left'
 
-  script, div = components(p)
+  script, div = components(p1)
 
   return render_template('plot.html',script=script,div=div)
 
