@@ -73,6 +73,8 @@ def create_plot():
 
   script, div = components(p)
 
+  return render_template('plot.html',script=script,div=div)
+
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0',port=33507)
