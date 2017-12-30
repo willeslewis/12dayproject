@@ -39,8 +39,6 @@ def plot():
   
   p1 =figure(x_axis_type="datetime",title="Stock Prices")
 
-  p1.grid.grid_line_alpha=0.3
-
   p1.xaxis.axis_label='Date'
 
   p1.yaxis.axis_label='Price'
@@ -61,5 +59,4 @@ def plot():
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)  
+    app.run(host='0.0.0.0', port=33507)  
