@@ -2,3 +2,5 @@ gunicorn==19.3.0
 requests==2.9.1
 bokeh==0.12.4
 Jinja2==2.9.6
+pandas==0.20.1
+Flask==0.10.1
