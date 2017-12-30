@@ -1,1 +1,1 @@
-web: bokeh serve
+web: gunicorn app:app
