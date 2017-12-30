@@ -1,3 +1,4 @@
+import numpy as np
 from bokeh.plotting import figure
 from bokeh.embed import components 
 import pandas as pd
@@ -7,14 +8,14 @@ app = Flask(__name__)
 
 uservars={}
 
-def stock_load(ticker_name):
+#def stock_load(ticker_name):
 
-  api_url = 'https://www.quandl.com/api/v3/datasets/WIKI/%s.json' % stock
-  r=requests.get(api_url)
-  myjson=r.json()
-  tickerdata=pd.DataFrame(myjson['dataset']['data'],columns=['Date','Open','High','Low','Close','Volume','Ex-Dividend','Split Ratio','Adj. Open','Adj. High','Adj. Low','Adj. Close','Adj. Volume'])
+#  api_url = 'https://www.quandl.com/api/v3/datasets/WIKI/%s.json' % stock
+#  r=requests.get(api_url)
+#  myjson=r.json()
+#  tickerdata=pd.DataFrame(myjson['dataset']['data'],columns=['Date','Open','High','Low','Close','Volume','Ex-Dividend','Split Ratio','Adj. Open','Adj. High','Adj. Low','Adj. Close','Adj. Volume'])
 
-  return tickerdata
+#  return tickerdata
 
 @app.route('/')
 def main():
@@ -30,9 +31,11 @@ def index():
 @app.route('/plot.html',methods=['POST'])
 def create_plot():
 
-  uservars['ticker']=request.form['ticker']
-
-  tickerdata=stock_load(request.form['ticker'])
+  stock=request.form['ticker']
+  api_url = 'https://www.quandl.com/api/v3/datasets/WIKI/%s.json' % stock
+  r=requests.get(api_url)
+  myjson=r.json()
+  tickerdata=pd.DataFrame(myjson['dataset']['data'],columns=['Date','Open','High','Low','Close','Volume','Ex-Dividend','Split Ratio','Adj. Open','Adj. High','Adj. Low','Adj. Close','Adj. Volume'])  
   
   p1 =figure(x_axis_type="datetime",title="Stock Prices")
 
@@ -43,13 +46,13 @@ def create_plot():
   p1.yaxis.axis_label='Price'
 
   if request.form.get('Close'):
-    p1.line(tickerdata['Date'],tickerdata['Close'],color='red',legend='AAPL')
+    p1.line(np.array(tickerdata['Date'],dtype=np.datetime64),tickerdata['Close'],color='red',legend='Close')
   if request.form.get('Open'):
-    p1.line(tickerdata['Date'],tickerdata['Open'],color='red',legend='AAPL')
+    p1.line(np.array(tickerdata['Date'],dtype=np.datetime64),tickerdata['Open'],color='red',legend='Open')
   if request.form.get('Adj. Close'):
-    p1.line(tickerdata['Date'],tickerdata['Adj. Close'],color='red',legend='AAPL')
+    p1.line(np.array(tickerdata['Date'],dtype=np.datetime64),tickerdata['Adj. Close'],color='red',legend='Adj. Close')
   if request.form.get('Adj. Open'):
-    p1.line(tickerdata['Date'],tickerdata['Adj. Open'],color='red',legend='AAPL')
+    p1.line(np.array(tickerdata['Date'],dtype=np.datetime64),tickerdata['Adj. Open'],color='red',legend='Adj. Open')
   p1.legend.location='top_left'
 
   script, div = components(p)
