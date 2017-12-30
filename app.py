@@ -2,7 +2,7 @@ import requests
 from bokeh.plotting import figure
 from bokeh.embed import components 
 import pandas as pd
-import datetime
+from datetime import datetime, timedelta
 from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
@@ -37,9 +37,9 @@ def plot():
   r=requests.get(api_url)
   myjson=r.json()
   tickerdata=pd.DataFrame(myjson['dataset']['data'],columns=['Date','Open','High','Low','Close','Volume','Ex-Dividend','Split Ratio','Adj. Open','Adj. High','Adj. Low','Adj. Close','Adj. Volume'])  
-  d = datetime.today() - timedelta(days=365)
+  d = datetime.now() - timedelta(days=365)
 	
-  tickerdata=tickerdata[tickerdata['Date']>=d]
+  tickerdata=tickerdata[pd.to_datetime(tickerdata['Date']>=d)]
   p1 =figure(x_axis_type="datetime",title="Stock Prices")
 
   p1.xaxis.axis_label='Date'
@@ -49,11 +49,11 @@ def plot():
   if request.form.get('Close'):
     p1.line(pd.to_datetime(tickerdata['Date']),tickerdata['Close'],color='red',legend='Close')
   if request.form.get('Open'):
-    p1.line(pd.to_datetime(tickerdata['Date']),tickerdata['Open'],color='red',legend='Open')
+    p1.line(pd.to_datetime(tickerdata['Date']),tickerdata['Open'],color='green',legend='Open')
   if request.form.get('Adj. Close'):
-    p1.line(pd.to_datetime(tickerdata['Date']),tickerdata['Adj. Close'],color='red',legend='Adj. Close')
+    p1.line(pd.to_datetime(tickerdata['Date']),tickerdata['Adj. Close'],color='orange',legend='Adj. Close')
   if request.form.get('Adj. Open'):
-    p1.line(pd.to_datetime(tickerdata['Date']),tickerdata['Adj. Open'],color='red',legend='Adj. Open')
+    p1.line(pd.to_datetime(tickerdata['Date']),tickerdata['Adj. Open'],color='blue',legend='Adj. Open')
   p1.legend.location='top_left'
 
   script, div = components(p1)
