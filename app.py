@@ -28,7 +28,7 @@ def index():
   return render_template('index.html')
 
 
-@app.route('/plot.html',methods=['POST'])
+@app.route('/plot',methods=['POST'])
 def create_plot():
 
   stock=request.form['ticker']
@@ -61,4 +61,4 @@ def create_plot():
 
 
 if __name__ == '__main__':
-  app.run(host='0.0.0.0')
+  app.run(host='0.0.0.0',port=33507)
