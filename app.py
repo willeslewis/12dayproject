@@ -2,6 +2,7 @@ import requests
 from bokeh.plotting import figure
 from bokeh.embed import components 
 import pandas as pd
+import datetime
 from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
@@ -36,7 +37,9 @@ def plot():
   r=requests.get(api_url)
   myjson=r.json()
   tickerdata=pd.DataFrame(myjson['dataset']['data'],columns=['Date','Open','High','Low','Close','Volume','Ex-Dividend','Split Ratio','Adj. Open','Adj. High','Adj. Low','Adj. Close','Adj. Volume'])  
-  
+  d = datetime.today() - timedelta(days=365)
+	
+  tickerdata=tickerdata[tickerdata['Date']>=d]
   p1 =figure(x_axis_type="datetime",title="Stock Prices")
 
   p1.xaxis.axis_label='Date'
