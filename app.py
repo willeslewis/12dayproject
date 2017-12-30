@@ -18,13 +18,13 @@ uservars={}
 
 #  return tickerdata
 
-@app.route('/')
-def main():
-  return redirect('/index')
+#@app.route('/')
+#def main():
+#  return redirect('/index')
 
 
 # Index page
-@app.route('/index',methods=['GET'])
+@app.route('/',methods=['GET'])
 def index():
   return render_template('index.html')
 
