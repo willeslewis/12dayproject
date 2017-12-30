@@ -46,7 +46,7 @@ def index():
   return render_template('index.html')
 
 
-@app.route('/plot.html',method=['POST'])
+@app.route('/plot.html',methods=['POST'])
 def create_plot():
 
   uservars['ticker']=request.form['ticker']
